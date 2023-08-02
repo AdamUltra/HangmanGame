@@ -1,5 +1,6 @@
 import random
 turns = 15
+result = ''
 guesses = ''
 library = ['laptop', 'pig', 'great', 'life', 'sun', 'computer', 'tower', 'cloak', 'cola',
            'oil', 'blood', 'touch', 'grew', 'cent', 'mix', 'team', 'wire', 'cost', 'lost', 'brown', 'wear', 'garden', 'equal',
@@ -41,16 +42,19 @@ def again():
 
 
 def ask():
-    global turns, guesses, UInp
+    global turns, guesses, UInp, result
+    result = ''
     word = str(random.choice(library))
     while turns > 0:
         failed = 0
+        result = ''
         for char in word:
             if char in guesses:
-                print(char)
+                result += char + ' '
             else:
-                print('_')
+                result += '_ '
                 failed += 1
+        print(result)
         if failed == 0:
             print("\nYou Win")
             print("The word is: ", word)
