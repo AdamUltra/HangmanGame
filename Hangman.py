@@ -1,9 +1,6 @@
 import random
-import time
 turns = 15
-start = True
 guesses = ''
-right_answer = 0
 library = ['laptop', 'pig', 'great', 'life', 'sun', 'computer', 'tower', 'cloak', 'cola',
            'oil', 'blood', 'touch', 'grew', 'cent', 'mix', 'team', 'wire', 'cost', 'lost', 'brown', 'wear', 'garden', 'equal',
            'sent', 'choose', 'fell', 'fit', 'flow', 'fair', 'bank', 'collect', 'save', 'control', 'decimal', 'gentle', 'woman',
@@ -30,29 +27,46 @@ library = ['laptop', 'pig', 'great', 'life', 'sun', 'computer', 'tower', 'cloak'
            'liquid', 'log', 'meant', 'quotient', 'teeth', 'shell', 'neck']
 
 print('let\'s play hangman!!')
-word = str(random.choice(library))
-while turns > 0:
-    failed = 0
-    for char in word:
-        if char in guesses:
-            print(char)
-        else:
-            print('_')
-            failed += 1
-    if failed == 0:
-        print("\nYou Win")
-        print("The word is: ", word)
-        time.sleep(1000)
-        break
-    guess = str(input("guess a character:"))
-    guesses += guess
-    if guess not in word:
-        turns -= 1
-        print("Wrong")
-        print("You have", + turns, 'more guesses')
-        if turns == 0:
-            print("You Loose")
-            print('The word is: ', word)
-            time.sleep(1000)
 
 
+def again():
+    global turns, guesses
+    if UInp == 'yes':
+        turns = 15
+        guesses = ''
+        ask()
+
+    else:
+        quit()
+
+
+def ask():
+    global turns, guesses, UInp
+    word = str(random.choice(library))
+    while turns > 0:
+        failed = 0
+        for char in word:
+            if char in guesses:
+                print(char)
+            else:
+                print('_')
+                failed += 1
+        if failed == 0:
+            print("\nYou Win")
+            print("The word is: ", word)
+            UInp = input('Do you want to play again?')
+            again()
+        guess = str(input("guess a character:"))
+        guesses += guess
+        if guess not in word:
+            turns -= 1
+            print("Wrong")
+            print("You have", + turns, 'more guesses')
+            if turns == 0:
+                print("You Loose")
+                print('The word is: ', word)
+                UInp = input('Do you want to play again?')
+                again()
+
+
+ask()
