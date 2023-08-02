@@ -63,7 +63,7 @@ def ask():
             print("Wrong")
             print("You have", + turns, 'more guesses')
             if turns == 0:
-                print("You Loose")
+                print("You Lose")
                 print('The word is: ', word)
                 UInp = input('Do you want to play again?')
                 again()
